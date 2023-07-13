@@ -56,7 +56,7 @@ function main() {
         # Use the GitHub API to get a list of voice assets
         VOICE_DATA=$(curl -s https://api.github.com/repos/rhasspy/piper/releases/tags/v0.0.2)
 
-         Filter the voice assets using jq, selecting only the ones that start with "voice" and contain "_en"
+        # Filter the voice assets using jq, selecting only the ones that start with "voice" and contain "_en"
         VOICE_NAMES=($(echo $VOICE_DATA | jq -r '.assets[] | select(.name | startswith("voice") and contains("-en")) | .name' | head -10))
         VOICE_URLS=($(echo $VOICE_DATA | jq -r '.assets[] | select(.name | startswith("voice") and contains("-en")) | .browser_download_url' | head -10))
 
